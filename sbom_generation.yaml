@@ -13,6 +13,9 @@ steps:
   - type: Command
     name: "Install Node.js >= 18.0.0"
     command: |
+      # Remove older Node.js versions if present
+      sudo rm -rf /usr/local/bin/node /usr/local/bin/npm /usr/local/lib/node_modules
+      # Download and install Node.js v18 LTS
       curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
       sudo apt-get install -y nodejs
       # Verify installation
