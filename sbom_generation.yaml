@@ -11,9 +11,23 @@ shell: bash
 
 steps:
   - type: Command
-    name: "Install dependencies & cyclonedx-node-npm package"
+    name: "Install Node.js 22 and matching npm"
     command: |
-      npm install && npm install --save-dev @cyclonedx/cyclonedx-npm@1.19.3
+      curl -fsSL https://rpm.nodesource.com/setup_22.x | bash -
+      yum install -y nodejs
+      node -v
+      npm -v
+  - type: Command
+    name: "Install node-cli & unit-testing packages"
+    command: |
+      rm -f package-lock.json
+      npm install --ignore-scripts
+  - type: Command
+    name: "Install CycloneDX as dependency"
+    command: |
+      npm install --ignore-scripts
+      npm install --save-dev @cyclonedx/cyclonedx-npm@1.19.3 --ignore-scripts
+
   - type: Command
     name: "Run cyclonedx-node-npm package"
     command: |
