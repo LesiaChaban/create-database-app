@@ -11,14 +11,24 @@ shell: bash
 
 steps:
   - type: Command
+    name: "Install Node.js >= 18.0.0"
+    command: |
+      curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+      sudo apt-get install -y nodejs
+      # Verify installation
+      node -v
+      npm -v
+
+  - type: Command
     name: "Install dependencies & cyclonedx-node-npm package"
     command: |
       npm install && npm install --save-dev @cyclonedx/cyclonedx-npm@1.19.3
+
   - type: Command
     name: "Run cyclonedx-node-npm package"
     command: |
-      # For more details, visit https://github.com/CycloneDX/cyclonedx-node-npm/blob/main/README.md
       npx @cyclonedx/cyclonedx-npm --omit dev --output-format JSON --output-file artifactSBOM.json --spec-version 1.4 --flatten-components
+
 outputArtifacts:
   - name: artifactSBOM
     type: BINARY
