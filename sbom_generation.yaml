@@ -76,13 +76,12 @@ steps:
     command: |
       cd templates/node-angular
       npx @cyclonedx/cyclonedx-npm \
-        --omit dev \
         --output-format JSON \
         --output-file artifactSBOM_node-angular.json \
         --spec-version 1.4
 
   - type: Command
-    name: "Install node-angular extension package"
+    name: "Install node-jet extension package"
     command: |
       cd templates/node-jet
       rm -f package-lock.json
