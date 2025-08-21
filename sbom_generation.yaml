@@ -63,9 +63,9 @@ steps:
       rm -f package-lock.json
       npm install --ignore-scripts
 
-   - type: Command
-     name: "Run CycloneDX for mle-ts-sample package"
-     command: |
+  - type: Command
+    name: "Run CycloneDX for mle-ts-sample package"
+    command: |
       cd templates/mle-ts-sample
       npx @cyclonedx/cyclonedx-npm \
         --omit dev \
@@ -98,8 +98,8 @@ steps:
       npm install --ignore-scripts
 
   - type: Command
-     name: "Run CycloneDX for node-jet package"
-     command: |
+    name: "Run CycloneDX for node-jet package"
+    command: |
       cd templates/node-jet
       npx @cyclonedx/cyclonedx-npm \
         --omit dev \
@@ -115,8 +115,8 @@ steps:
       npm install --ignore-scripts
 
   - type: Command
-     name: "Run CycloneDX for node-react-todo package"
-     command: |
+    name: "Run CycloneDX for node-react-todo package"
+    command: |
       cd templates/node-react-todo
       npx @cyclonedx/cyclonedx-npm \
         --omit dev \
@@ -124,7 +124,7 @@ steps:
         --output-file artifactSBOM_node-react-todo.json \
         --spec-version 1.4
   
-   - type: Command
+  - type: Command
     name: "Install nodode-react extension package"
     command: |
       cd templates/node-react
@@ -132,8 +132,8 @@ steps:
       npm install --ignore-scripts
 
   - type: Command
-     name: "Run CycloneDX for node-react package"
-     command: |
+    name: "Run CycloneDX for node-react package"
+    command: |
       cd templates/node-react
       npx @cyclonedx/cyclonedx-npm \
         --omit dev \
