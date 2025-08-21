@@ -11,14 +11,14 @@ shell: bash
 
 steps:
   - type: Command
-    name: "Install Node.js >= 18.0.0"
+    name: "Setup Node.js >= 18.0.0 with nvm"
     command: |
-      # Remove older Node.js versions if present
-      sudo rm -rf /usr/local/bin/node /usr/local/bin/npm /usr/local/lib/node_modules
-      # Download and install Node.js v18 LTS
-      curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-      sudo apt-get install -y nodejs
-      # Verify installation
+      export NVM_DIR="$HOME/.nvm"
+      [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+      . $HOME/.nvm/nvm.sh
+      nvm install 18
+      nvm use 18
       node -v
       npm -v
 
@@ -26,7 +26,7 @@ steps:
     name: "Install dependencies & cyclonedx-node-npm package"
     command: |
       npm install && npm install --save-dev @cyclonedx/cyclonedx-npm@1.19.3
-
+      
   - type: Command
     name: "Run cyclonedx-node-npm package"
     command: |
