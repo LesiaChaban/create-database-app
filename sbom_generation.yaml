@@ -29,7 +29,7 @@ steps:
     command: |
       npm install --ignore-scripts
       npm install --save-dev @cyclonedx/cyclonedx-npm@1.19.3 --ignore-scripts
- 
+
   - type: Command
     name: "Run CycloneDX for node-cli & unit-testing packages"
     command: |
@@ -38,7 +38,7 @@ steps:
         --output-format JSON \
         --output-file artifactSBOM_node-cli_unit-testing.json \
         --spec-version 1.4
-        
+
   - type: Command
     name: "Install mle-ts-ords-backend extension package"
     command: |
@@ -55,7 +55,7 @@ steps:
         --output-format JSON \
         --output-file artifactSBOM_mle-ts-ords-backend.json \
         --spec-version 1.4
-        
+
   - type: Command
     name: "Install mle-ts-sample extension package"
     command: |
@@ -72,7 +72,7 @@ steps:
         --output-format JSON \
         --output-file artifactSBOM_mle-ts-sample.json \
         --spec-version 1.4
-  
+
   - type: Command
     name: "Install node-angular extension package"
     command: |
@@ -81,8 +81,8 @@ steps:
       npm install --ignore-scripts
 
   - type: Command
-     name: "Run CycloneDX for node-angular package"
-     command: |
+    name: "Run CycloneDX for node-angular package"
+    command: |
       cd templates/node-angular
       npx @cyclonedx/cyclonedx-npm \
         --omit dev \
@@ -106,7 +106,7 @@ steps:
         --output-format JSON \
         --output-file artifactSBOM_node-jet.json \
         --spec-version 1.4
-  
+
   - type: Command
     name: "Install nodode-react-todo extension package"
     command: |
@@ -123,7 +123,7 @@ steps:
         --output-format JSON \
         --output-file artifactSBOM_node-react-todo.json \
         --spec-version 1.4
-  
+
   - type: Command
     name: "Install nodode-react extension package"
     command: |
@@ -140,7 +140,7 @@ steps:
         --output-format JSON \
         --output-file artifactSBOM_node-react.json \
         --spec-version 1.4
-      
+
   - type: Command
     name: "Download CycloneDX Linux CLI and install dependencies"
     command: |
@@ -158,3 +158,4 @@ outputArtifacts:
   - name: artifactSBOM
     type: BINARY
     location: ${OCI_PRIMARY_SOURCE_DIR}/artifactSBOM.json
+    
