@@ -11,9 +11,9 @@ shell: bash
 
 steps:
   - type: Command
-    name: "Install Node.js 22 and matching npm"
+    name: "Install Node.js 16 and matching npm"
     command: |
-      curl -fsSL https://rpm.nodesource.com/setup_22.x | bash -
+      curl -fsSL https://rpm.nodesource.com/setup_16.x | bash -
       yum install -y nodejs
       node -v
       npm -v
@@ -28,13 +28,13 @@ steps:
     name: "Install CycloneDX as dependency"
     command: |
       npm install --ignore-scripts
-      npm install --save-dev @cyclonedx/cyclonedx-npm@1.19.3 --ignore-scripts
+      # Use a version of cyclonedx-npm that supports Node 16, like v1.13.0 or lower
+      npm install --save-dev @cyclonedx/cyclonedx-npm@1.13.0 --ignore-scripts
 
   - type: Command
     name: "Run cyclonedx-node-npm package"
     command: |
-      # For more details, visit https://github.com/CycloneDX/cyclonedx-node-npm/blob/main/README.md
-      npx @cyclonedx/cyclonedx-npm --omit dev --output-format JSON --output-file artifactSBOM.json --spec-version 1.4 --flatten-components
+      npx @cyclonedx/cyclonedx-npm --output-format JSON --output-file artifactSBOM.json --spec-version 1.4 --flatten-components
 outputArtifacts:
   - name: artifactSBOM
     type: BINARY
